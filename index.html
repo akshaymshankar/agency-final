@@ -3,547 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PSG Tech Placement Portal</title>
+    <title>Metro Media House | Build Profitable Personal Brands</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Auth Pages -->
-    <div id="authContainer" class="auth-container">
-        <!-- Login Page -->
-        <div id="loginPage" class="auth-page">
-            <div class="auth-card">
-                <div class="auth-header">
-                    <div class="logo">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h1>PSG Tech Placement Portal</h1>
-                    </div>
-                    <p>Connect. Learn. Succeed.</p>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L22 20H2L12 2Z" fill="currentColor"/>
+                    </svg>
                 </div>
-                
-                <form id="loginForm" class="auth-form">
-                    <div class="form-group">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" id="loginEmail" class="form-control" placeholder="your.name@psgtech.ac.in" required>
-                        <small class="error-text" id="loginEmailError"></small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Password</label>
-                        <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
-                        <small class="error-text" id="loginPasswordError"></small>
-                    </div>
-                    
-                    <button type="submit" class="btn btn--primary btn--full-width">Sign In</button>
-                    <div class="auth-switch">
-                        <p>Don't have an account? <a href="#" id="showRegister">Create Account</a></p>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Register Page -->
-        <div id="registerPage" class="auth-page hidden">
-            <div class="auth-card">
-                <div class="auth-header">
-                    <div class="logo">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h1>Join PSG Tech Placement Portal</h1>
-                    </div>
-                    <p>Start your placement journey today</p>
-                </div>
-                
-                <form id="registerForm" class="auth-form">
-                    <div class="form-group">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" id="registerName" class="form-control" placeholder="Your Full Name" required>
-                        <small class="error-text" id="registerNameError"></small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" id="registerEmail" class="form-control" placeholder="your.name@psgtech.ac.in" required>
-                        <small class="error-text" id="registerEmailError"></small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Password</label>
-                        <input type="password" id="registerPassword" class="form-control" placeholder="••••••••" required>
-                        <small class="error-text" id="registerPasswordError"></small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Confirm Password</label>
-                        <input type="password" id="confirmPassword" class="form-control" placeholder="••••••••" required>
-                        <small class="error-text" id="confirmPasswordError"></small>
-                    </div>
-                    
-                    <button type="submit" class="btn btn--primary btn--full-width">Create Account</button>
-                    <div class="auth-switch">
-                        <p>Already have an account? <a href="#" id="showLogin">Sign In</a></p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Application -->
-    <div id="mainApp" class="main-app hidden">
-        <!-- Sidebar -->
-        <nav class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>PSG Placement</span>
-                </div>
+                <span class="logo-text">Metro Media House</span>
             </div>
             
-            <ul class="sidebar-nav">
-                <li><a href="#" class="nav-link active" data-page="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
-                <li><a href="#" class="nav-link" data-page="experiences"><i class="fas fa-comments"></i> Experiences</a></li>
-                <li><a href="#" class="nav-link" data-page="resources"><i class="fas fa-book"></i> Resources</a></li>
-                <li><a href="#" class="nav-link" data-page="records"><i class="fas fa-table"></i> Records</a></li>
-                <li><a href="#" class="nav-link" data-page="profile"><i class="fas fa-user"></i> Profile</a></li>
-                <li id="adminNavItem" class="hidden"><a href="#" class="nav-link" data-page="admin"><i class="fas fa-cog"></i> Admin</a></li>
-            </ul>
+            <div class="nav-menu">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+            </div>
             
-            <div class="sidebar-footer">
-                <div class="user-info">
-                    <div class="user-avatar"><i class="fas fa-user"></i></div>
-                    <div class="user-details">
-                        <span id="userName">User Name</span>
-                        <small id="userRole">Student</small>
-                        <div id="placementStatus" class="status-badge hidden">Not Placed</div>
-                    </div>
-                </div>
-                <button class="btn btn--outline btn--sm" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            </div>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Dashboard -->
-            <div id="dashboardPage" class="page active">
-                <div class="page-header">
-                    <div>
-                        <h1>Dashboard</h1>
-                        <p>Welcome to PSG Tech Placement Portal</p>
-                    </div>
-                    <div id="userPlacementBadge" class="placement-badge hidden">
-                        <i class="fas fa-building"></i>
-                        <div class="placement-info">
-                            <span id="placementCompany">Company</span>
-                            <small id="placementPackage">Package</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fas fa-users"></i></div>
-                        <div class="stat-content">
-                            <h3 id="totalPlacements">156</h3>
-                            <p>Students Placed</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fas fa-comments"></i></div>
-                        <div class="stat-content">
-                            <h3 id="totalExperiences">43</h3>
-                            <p>Interview Experiences</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fas fa-building"></i></div>
-                        <div class="stat-content">
-                            <h3 id="topCompaniesCount">25+</h3>
-                            <p>Top Companies</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fas fa-percentage"></i></div>
-                        <div class="stat-content">
-                            <h3 id="placementRate">87%</h3>
-                            <p>Placement Rate</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dashboard-grid">
-                    <div class="dashboard-card">
-                        <h3>Recent Placements</h3>
-                        <div id="recentPlacements" class="recent-list"></div>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Top Companies</h3>
-                        <div id="topCompaniesList" class="companies-list"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interview Experiences -->
-            <div id="experiencesPage" class="page">
-                <div class="page-header">
-                    <div>
-                        <h1>Interview Experiences</h1>
-                        <p>Learn from your seniors' experiences</p>
-                    </div>
-                    <button class="btn btn--primary" id="addExperienceBtn"><i class="fas fa-plus"></i> Share Experience</button>
-                </div>
-
-                <div class="filters">
-                    <select id="companyFilter" class="form-control">
-                        <option value="">All Companies</option>
-                    </select>
-                    <select id="yearFilter" class="form-control">
-                        <option value="">All Years</option>
-                    </select>
-                    <select id="difficultyFilter" class="form-control">
-                        <option value="">All Difficulties</option>
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Hard">Hard</option>
-                    </select>
-                </div>
-
-                <div id="experiencesList" class="experiences-grid"></div>
-            </div>
-
-            <!-- Resources -->
-            <div id="resourcesPage" class="page">
-                <div class="page-header">
-                    <h1>Placement Resources</h1>
-                    <p>Everything you need for placement preparation</p>
-                </div>
-
-                <div class="resources-grid">
-                    <div class="resource-card" data-category="DSA">
-                        <div class="resource-icon"><i class="fas fa-code"></i></div>
-                        <h3>Data Structures & Algorithms</h3>
-                        <p>Master the fundamentals of DSA for technical interviews</p>
-                        <span class="resource-count">15 Resources</span>
-                    </div>
-                    <div class="resource-card" data-category="OS">
-                        <div class="resource-icon"><i class="fas fa-desktop"></i></div>
-                        <h3>Operating Systems</h3>
-                        <p>Core OS concepts and interview questions</p>
-                        <span class="resource-count">12 Resources</span>
-                    </div>
-                    <div class="resource-card" data-category="DBMS">
-                        <div class="resource-icon"><i class="fas fa-database"></i></div>
-                        <h3>Database Management</h3>
-                        <p>SQL queries, database design, and optimization</p>
-                        <span class="resource-count">10 Resources</span>
-                    </div>
-                    <div class="resource-card" data-category="CN">
-                        <div class="resource-icon"><i class="fas fa-network-wired"></i></div>
-                        <h3>Computer Networks</h3>
-                        <p>Networking protocols, OSI model, and more</p>
-                        <span class="resource-count">8 Resources</span>
-                    </div>
-                    <div class="resource-card" data-category="Aptitude">
-                        <div class="resource-icon"><i class="fas fa-calculator"></i></div>
-                        <h3>Aptitude & Reasoning</h3>
-                        <p>Quantitative aptitude and logical reasoning</p>
-                        <span class="resource-count">20 Resources</span>
-                    </div>
-                    <div class="resource-card" data-category="Resume">
-                        <div class="resource-icon"><i class="fas fa-file-alt"></i></div>
-                        <h3>Resume Building</h3>
-                        <p>Create impressive resumes that stand out</p>
-                        <span class="resource-count">7 Resources</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Records -->
-            <div id="recordsPage" class="page">
-                <div class="page-header">
-                    <h1>Placement Records</h1>
-                    <div class="header-controls">
-                        <select id="batchFilter" class="form-control">
-                            <option value="">All Batches</option>
-                            <option value="2024">2024</option>
-                            <option value="2023">2023</option>
-                            <option value="2022">2022</option>
-                        </select>
-                        <input type="text" id="recordsSearch" class="form-control" placeholder="Search records...">
-                    </div>
-                </div>
-
-                <div class="charts-grid">
-                    <div class="chart-card">
-                        <h3>Company-wise Placements</h3>
-                        <div class="chart-container" style="position: relative; height: 300px;">
-                            <canvas id="companyChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="chart-card">
-                        <h3>Package Distribution</h3>
-                        <div class="chart-container" style="position: relative; height: 300px;">
-                            <canvas id="packageChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="records-table-container">
-                    <table class="records-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Company</th>
-                                <th>Role</th>
-                                <th>Year</th>
-                                <th>Package</th>
-                            </tr>
-                        </thead>
-                        <tbody id="recordsTableBody"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Profile -->
-            <div id="profilePage" class="page">
-                <div class="page-header">
-                    <h1>My Profile</h1>
-                    <p>Manage your profile and placement information</p>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-card">
-                        <div class="profile-header">
-                            <div class="profile-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="profile-info">
-                                <h3 id="profileName">User Name</h3>
-                                <p id="profileEmail">user@psgtech.ac.in</p>
-                                <div id="profilePlacementStatus" class="placement-status"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="profile-details" id="placementDetails">
-                            <div class="detail-item">
-                                <label>Company:</label>
-                                <span id="profileCompany">-</span>
-                            </div>
-                            <div class="detail-item">
-                                <label>Role:</label>
-                                <span id="profileRole">-</span>
-                            </div>
-                            <div class="detail-item">
-                                <label>Package:</label>
-                                <span id="profilePackage">-</span>
-                            </div>
-                        </div>
-
-                        <div class="profile-actions">
-                            <button class="btn btn--outline" id="editProfileBtn">Edit Profile</button>
-                        </div>
-                    </div>
-
-                    <div class="profile-card">
-                        <h3>Your Interview Experiences</h3>
-                        <div id="userExperiences" class="user-experiences">
-                            <p class="no-experiences">No interview experiences shared yet.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Admin -->
-            <div id="adminPage" class="page">
-                <div class="page-header">
-                    <h1>Admin Panel</h1>
-                    <p>Manage placement data and student information</p>
-                </div>
-
-                <div class="admin-tabs">
-                    <button class="tab-btn active" data-tab="students">Student Management</button>
-                    <button class="tab-btn" data-tab="records">Placement Records</button>
-                    <button class="tab-btn" data-tab="experiences">Interview Experiences</button>
-                </div>
-
-                <div class="admin-content">
-                    <!-- Student Management Tab -->
-                    <div id="adminStudents" class="admin-tab active">
-                        <div class="admin-controls">
-                            <div class="search-container">
-                                <input type="text" id="studentSearch" class="form-control" placeholder="Search students...">
-                                <button class="btn btn--outline" id="refreshStudentsBtn"><i class="fas fa-sync"></i> Refresh</button>
-                            </div>
-                        </div>
-                        <div class="students-table-container">
-                            <table class="students-table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
-                                        <th>Company</th>
-                                        <th>Package</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="studentsTableBody"></tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Placement Records Tab -->
-                    <div id="adminRecords" class="admin-tab">
-                        <div class="admin-controls">
-                            <button class="btn btn--primary" id="addRecordBtn"><i class="fas fa-plus"></i> Add Record</button>
-                        </div>
-                        <div id="adminRecordsList" class="admin-list"></div>
-                    </div>
-                    
-                    <!-- Interview Experiences Tab -->
-                    <div id="adminExperiences" class="admin-tab">
-                        <div id="adminExperiencesList" class="admin-list"></div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- Modals -->
-    <!-- Add Experience Modal -->
-    <div id="addExperienceModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="experienceModalTitle">Share Your Interview Experience</h2>
-                <button class="modal-close">&times;</button>
-            </div>
-            <form id="experienceForm" class="modal-form">
-                <div class="form-group">
-                    <label class="form-label">Company</label>
-                    <input type="text" id="expCompany" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Role</label>
-                    <input type="text" id="expRole" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Year</label>
-                    <select id="expYear" class="form-control" required>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Difficulty</label>
-                    <select id="expDifficulty" class="form-control" required>
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Hard">Hard</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Interview Rounds</label>
-                    <textarea id="expRounds" class="form-control" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Experience Details</label>
-                    <textarea id="expDetails" class="form-control" rows="5" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Tips for Future Candidates</label>
-                    <textarea id="expTips" class="form-control" rows="3"></textarea>
-                </div>
-                <div class="modal-actions">
-                    <button type="button" class="btn btn--outline modal-cancel">Cancel</button>
-                    <button type="submit" class="btn btn--primary" id="submitExperienceBtn">Share Experience</button>
-                </div>
-            </form>
+            <button class="btn nav-cta">Book a Call</button>
         </div>
-    </div>
+    </nav>
 
-    <!-- Mark as Placed Modal -->
-    <div id="markPlacedModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Mark Student as Placed</h2>
-                <button class="modal-close">&times;</button>
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-headline">
+                    We help <span class="faded">entrepreneurs</span> build profitable personal brands through <span class="faded underlined">short-form content</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Leverage your expertise into high-converting video content that builds trust, generates qualified leads organically, and establishes you as the go-to authority in your space.
+                </p>
+                
+                <div class="cta-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; margin-top: 2rem;">
+                    <button class="btn btn-primary hero-cta" style="margin-bottom: 1.5rem;">Book a Free Discovery Call</button>
+                    <div class="handwritten-note" style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                        <span class="handwritten-text" style="font-family: 'Caveat', cursive; font-size: 1.2rem; margin-bottom: -0.5rem;">Your personal brand starts here</span>
+                        <svg class="arrow" width="120" height="40" viewBox="0 0 120 40" fill="none" style="transform: rotate(-15deg); position: absolute; top: 20px; left: 50%; margin-left: -60px;">
+                            <path d="M10 25C30 15 50 10 90 20L85 15M90 20L85 25" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+                </div>
             </div>
-            <form id="markPlacedForm" class="modal-form">
-                <input type="hidden" id="placedStudentEmail">
-                <div class="form-group">
-                    <label class="form-label">Student Name</label>
-                    <input type="text" id="placedStudentName" class="form-control" readonly>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Company</label>
-                    <input type="text" id="placedCompany" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Role</label>
-                    <input type="text" id="placedRole" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Package (LPA)</label>
-                    <input type="text" id="placedPackage" class="form-control" required>
-                </div>
-                <div class="modal-actions">
-                    <button type="button" class="btn btn--outline modal-cancel">Cancel</button>
-                    <button type="submit" class="btn btn--primary">Mark as Placed</button>
-                </div>
-            </form>
         </div>
+    </main>
+    <!-- Statistics Section -->
+<section class="statistics-section">
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <!-- Placeholder Video Icon -->
+        <svg width="28" height="28" fill="none" viewBox="0 0 28 28">
+          <rect width="22" height="16" x="3" y="6" rx="5" stroke="#BDBDBD" stroke-width="2"/>
+          <polygon points="13,11 18,14 13,17" fill="#BDBDBD"/>
+        </svg>
+      </div>
+      <div class="stat-text">
+        <div class="stat-label"><strong>250M+ Views</strong></div>
+        <div>Generated</div>
+      </div>
     </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <!-- Placeholder Eye Icon -->
+        <svg width="28" height="28" fill="none" viewBox="0 0 28 28">
+          <ellipse cx="14" cy="14" rx="10" ry="7" stroke="#BDBDBD" stroke-width="2"/>
+          <circle cx="14" cy="14" r="3" fill="#BDBDBD"/>
+        </svg>
+      </div>
+      <div class="stat-text">
+        <div class="stat-label"><strong>4+ Years of Building Personal</strong></div>
+        <div>Brands</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <!-- Placeholder Calendar Icon -->
+        <svg width="28" height="28" fill="none" viewBox="0 0 28 28">
+          <rect x="5" y="7" width="18" height="14" rx="4" stroke="#BDBDBD" stroke-width="2"/>
+          <rect x="9" y="14" width="10" height="3" rx="1" fill="#BDBDBD"/>
+        </svg>
+      </div>
+      <div class="stat-text">
+        <div class="stat-label"><strong>5000+ Videos</strong></div>
+        <div>Created</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Resource Modal -->
-    <div id="resourceModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="resourceModalTitle">Resources</h2>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div id="resourceModalContent" class="resource-modal-content"></div>
-        </div>
+<!-- Trusted by the Industry Leaders Section -->
+<section class="trusted-section">
+  <div class="trusted-title">
+    Trusted by the industry leaders
+  </div>
+  <div class="trusted-logos">
+    <!-- Replace these SVGs with your real client logos as needed -->
+    <svg width="100" height="32"><rect fill="#111" x="10" y="8" width="80" height="16" rx="5"/></svg>
+    <svg width="100" height="32"><rect fill="#aaa" x="10" y="8" width="80" height="16" rx="5"/></svg>
+    <svg width="100" height="32"><rect fill="#000" x="10" y="8" width="80" height="16" rx="5"/></svg>
+    <svg width="100" height="32"><rect fill="#f59e0b" x="10" y="8" width="80" height="16" rx="5"/></svg>
+    <svg width="100" height="32"><rect fill="#bdbdbd" x="10" y="8" width="80" height="16" rx="5"/></svg>
+    <svg width="100" height="32"><rect fill="#333" x="10" y="8" width="80" height="16" rx="5"/></svg>
+  </div>
+</section>
+<!-- Viral Videos Section -->
+<section class="viral-section">
+  <div class="viral-title">
+    <h2>
+      We turn <span class="viral-bold">simple content</span>
+      <span class="viral-faded underlined">viral.</span>
+    </h2>
+    <div class="viral-subtitle">
+      Ideated from scratch, created for efficiency
     </div>
-
-    <!-- Add Record Modal -->
-    <div id="addRecordModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Add Placement Record</h2>
-                <button class="modal-close">&times;</button>
-            </div>
-            <form id="recordForm" class="modal-form">
-                <div class="form-group">
-                    <label class="form-label">Student Name</label>
-                    <input type="text" id="recordName" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Company</label>
-                    <input type="text" id="recordCompany" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Role</label>
-                    <input type="text" id="recordRole" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Year</label>
-                    <select id="recordYear" class="form-control" required>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Package (LPA)</label>
-                    <input type="text" id="recordPackage" class="form-control" required>
-                </div>
-                <div class="modal-actions">
-                    <button type="button" class="btn btn--outline modal-cancel">Cancel</button>
-                    <button type="submit" class="btn btn--primary">Add Record</button>
-                </div>
-            </form>
+  </div>
+  <div class="video-card-row">
+    <!-- Video Card 1 -->
+    <div class="video-card">
+      <div class="video-thumb">
+        <!-- Simulate video/image background -->
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=340&q=80" alt="">
+        <button class="play-btn"></button>
+        <div class="sound-icon">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="16" fill="#222" fill-opacity="0.09"/>
+            <path d="M15 21V11l5 5-5 5z" fill="#222"/>
+          </svg>
         </div>
+      </div>
+      <div class="video-card-caption">are you listening to?</div>
+      <div class="video-card-timer">
+        <svg class="timer-play" width="20" height="20" viewBox="0 0 24 24"><polygon points="6,4 21,12 6,20" fill="#fff"/></svg>
+        <span>0:13</span>
+        <svg class="timer-menu" width="18" height="18"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="9" r="2"/><circle cx="21" cy="9" r="2"/></svg>
+      </div>
     </div>
+    <!-- Video Card 2 -->
+    <div class="video-card">
+      <div class="video-thumb">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=340&q=80" alt="">
+        <button class="play-btn"></button>
+        <div class="sound-icon">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="16" fill="#222" fill-opacity="0.09"/>
+            <path d="M15 21V11l5 5-5 5z" fill="#222"/>
+          </svg>
+        </div>
+      </div>
+      <div class="video-card-caption">I JUST MADE <span style="color:#65b657;">$65,000</span> SELLING SOMETHING</div>
+      <div class="video-card-timer">
+        <svg class="timer-play" width="20" height="20" viewBox="0 0 24 24"><polygon points="6,4 21,12 6,20" fill="#fff"/></svg>
+        <span>0:17</span>
+        <svg class="timer-menu" width="18" height="18"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="9" r="2"/><circle cx="21" cy="9" r="2"/></svg>
+      </div>
+    </div>
+    <!-- Video Card 3 -->
+    <div class="video-card">
+      <div class="video-thumb">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=340&q=80" alt="">
+        <button class="play-btn"></button>
+        <div class="sound-icon">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="16" fill="#222" fill-opacity="0.09"/>
+            <path d="M15 21V11l5 5-5 5z" fill="#222"/>
+          </svg>
+        </div>
+      </div>
+      <div class="video-card-caption">RECENT REALIZATIONS. FOR THE 20 YO ME.</div>
+      <div class="video-card-timer">
+        <svg class="timer-play" width="20" height="20" viewBox="0 0 24 24"><polygon points="6,4 21,12 6,20" fill="#fff"/></svg>
+        <span>0:17</span>
+        <svg class="timer-menu" width="18" height="18"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="9" r="2"/><circle cx="21" cy="9" r="2"/></svg>
+      </div>
+    </div>
+    <!-- Video Card 4 -->
+    <div class="video-card">
+      <div class="video-thumb blank">
+        <button class="play-btn"></button>
+        <div class="sound-icon">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="16" fill="#222" fill-opacity="0.09"/>
+            <path d="M15 21V11l5 5-5 5z" fill="#222"/>
+          </svg>
+        </div>
+        <svg height="60" width="60"><rect fill="#f7c062" x="0" y="0" width="60" height="40" rx="8" /></svg>
+      </div>
+      <div class="video-card-timer">
+        <svg class="timer-play" width="20" height="20" viewBox="0 0 24 24"><polygon points="6,4 21,12 6,20" fill="#fff"/></svg>
+        <span>0:37</span>
+        <svg class="timer-menu" width="18" height="18"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="9" r="2"/><circle cx="21" cy="9" r="2"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
 
     <script src="app.js"></script>
 </body>
